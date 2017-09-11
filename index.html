@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+
+	  <meta charset="utf-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Balanceador de equações quimicas</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style>
+
+		body{
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.footer {
+
+		  bottom: 0;
+		  width: 100%;
+		  /* Set the fixed height of the footer here */
+		  height: 60px;
+		  background-color: #f5f5f5;
+		}
+
+
+	.container .text-muted {
+	  margin: 40px 0;
+	  font-size:18px;
+	  
+	}
+
+	.footer > .container {
+	  padding-right: 15px;
+	  padding-left: 15px;
+	}
+
+	</style>
+</head>
+
+<body>
+
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Balanceador de equações quimicas</h1>
+			<p>Criado com o framework bootstrap e a biblioteca jQuery</p> 
+		</div>
+
+	  <div class="row">
+			<div class="col-md-8">
+				<p >Insira a equação quimica que deseja balancear</p>
+					
+				<div class="input-group">
+		
+					<input id ="inputFormula" type="text" class="form-control" placeholder="equação quimica" aria-label="equação quimica" aria-describedby="basic-addon1">
+					  <span class="input-group-btn">
+					<button id="btn" class="btn btn-primary" type="submit">Balancear</button>
+					</span>
+				</div>
+
+				<h3>Resultado</h3>
+				<div class="well">
+
+					<p id="message"></p>
+					<p id="balanced"></p>
+					<p id="codeOutput"></p>
+				</div>
+			</div>
+		  <div class="col-md-4" id="ex" >
+			  <h3 >Exemplos de equações</h3>
+
+		  </div>
+	  </div>
+
+
+	</div>
+	<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Vitor Perin 2° EMIA 2017</span>
+      </div>
+    </footer>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chemical_solver.js"></script>
+
+	<script>
+
+		function Eq_Erro()
+		{
+
+
+			alert("Não possivel balancear esta equação");
+		}
+		function Eq_balan(eq){
+
+            balance(eq);
+
+		}
+		$('#btn').on('click', function (e) {
+
+
+            $("#message").html("");
+            $("#balanced").html("");
+            $("#codeOutput").html("");
+
+            var eQ = $("#inputFormula").val();
+
+			if(eQ.length <= 3)
+			{
+				Eq_Erro();
+			}else
+			{
+				Eq_balan(eQ);
+			}
+		});
+		for(var i =0; i<RANDOM_DEMOS.length; i++){
+			var eq = "<p>"+ RANDOM_DEMOS[i] + "</p>";
+
+			$('#ex').append(eq);
+		}
+	</script>
+	</body>
+</html>
